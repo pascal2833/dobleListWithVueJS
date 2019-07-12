@@ -1,1 +1,1 @@
-// export { dataFromSearch } from './dataFromSearch'
+export { getListDataFromApiAction } from './getListDataFromApiAction'
