@@ -11,5 +11,7 @@ export default {
     ...actions
   },
   getters: {
+    // Get columnsName -> comment le faire pour chacune des 2 ?
+    // totalsValue: state => state.tableFormattedData.totals || '',
   }
 }

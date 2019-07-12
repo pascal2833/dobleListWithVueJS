@@ -26,6 +26,12 @@ import Loading from 'vue-loading-overlay'
 import 'vue-loading-overlay/dist/vue-loading.css'
 export default {
   name: 'List',
+  props: {
+    listName: {
+      type: String,
+      required: true
+    }
+  },
   data: () => {
     return {
       loading: {
@@ -44,7 +50,7 @@ export default {
   },
   created () {
     this.loading.isLoading = true
-    this.getListDataFromApiAction()
+    this.getListDataFromApiAction(this.listName)
       .then(() => {
         this.loading.isLoading = false
       })

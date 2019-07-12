@@ -1,11 +1,13 @@
+import { listNameDictionary } from '../../src/dictionnaries/listNameDictionnary'
+
 export const state = {
   listNamesAndDataAssociated: [
     {
-      listName: 'leftList',
+      listName: listNameDictionary.LIST1,
       listData: []
     },
     {
-      listName: 'rightList',
+      listName: listNameDictionary.LIST2,
       listData: []
     }
   ],

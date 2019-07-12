@@ -1,14 +1,21 @@
 /*
 We use a setTimeout to simulate a asynchronous call to an API.
-In the real life, it would be something call an asyn request from services and then(() => resolve() or error)
+In the real life, it would be a call to an async request from services and then(() => resolve() or error)
  */
-import { contactInJsObject } from '../../../Api/contact'
-export const getListDataFromApiAction = ({commit}) => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      const dataToReturn = contactInJsObject
-      commit('getListDataFromApiMutation', dataToReturn.data)
-      resolve('success')
-    }, 2000)
-  })
+// TODO: test: must return a promise.
+import { contactsInJsObject } from '../../../Api/contacts'
+export const getListDataFromApiAction = ({commit, state}, listName) => {
+  const indexList = state.listNamesAndDataAssociated.map((list) => list.listName).indexOf(listName)
+  if (indexList !== -1) {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        const objToPass = {
+          dataToReturn: contactsInJsObject[listName],
+          indexList
+        }
+        commit('getListDataFromApiMutation', objToPass)
+        resolve('success')
+      }, 2000)
+    })
+  }
 }

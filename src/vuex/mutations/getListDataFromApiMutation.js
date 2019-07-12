@@ -1,3 +1,3 @@
-export const getListDataFromApiMutation = (state, dataList) => {
-  state.listNamesAndDataAssociated = dataList
+export const getListDataFromApiMutation = (state, objToPass) => {
+  state.listNamesAndDataAssociated[objToPass.indexList].listData = objToPass.dataToReturn
 }
