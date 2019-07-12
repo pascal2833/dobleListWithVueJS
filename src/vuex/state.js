@@ -1,3 +1,17 @@
 export const state = {
-  // clubsData: clubsData
+  listNamesAndDataAssociated: [
+    {
+      listName: 'leftList',
+      listData: []
+    },
+    {
+      listName: 'rightList',
+      listData: []
+    }
+  ],
+  paramsToAdaptLists: {
+    listName: '',
+    paramsToOrderList: {},
+    paramsToFilterList: {}
+  }
 }

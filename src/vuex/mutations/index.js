@@ -1,1 +1,1 @@
-// export { saveResponseData } from './saveResponseData'
+export { getListDataFromApiMutation } from './getListDataFromApiMutation'
