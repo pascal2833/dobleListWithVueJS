@@ -3,12 +3,17 @@
     <table class="list__data">
       <thead>
       <tr>
-        <th>Firstname</th>
+        <th
+          v-for="listItem in getListItemsName"
+          :key=listItem.dataKey
+          @click="sortList({listName, itemToOrder: listItem.dataKey, increaseOrDecrease: 'increase'})"
+        >
+          {{listItem.columnName}}</th>
       </tr>
       </thead>
       <tbody>
-      <tr>
-        <td>Jill</td>
+      <tr v-for="row in getListData" :key="row.id">
+        <td v-for="listItem in getListItemsName" :key=listItem.dataKey>{{row[listItem.dataKey]}}</td>
       </tr>
       </tbody>
     </table>
@@ -45,12 +50,24 @@ export default {
   },
   methods: {
     ...mapActions([
-      'getListDataFromApiAction'
-    ])
+      'getListDataFromApiAction',
+      'sortListAction'
+    ]),
+    sortList (dataObj) {
+      this.sortListAction(dataObj)
+    }
+  },
+  computed: {
+    getListItemsName () {
+      return this.$store.getters.getListItemsNameGetter(this.listName)
+    },
+    getListData () {
+      return this.$store.getters.getListDataGetter(this.listName)
+    }
   },
   created () {
     this.loading.isLoading = true
-    this.getListDataFromApiAction(this.listName)
+    this.getListDataFromApiAction(this.listName) // In a real world, we would need to pass for ex url and listName in params to choose the good data.
       .then(() => {
         this.loading.isLoading = false
       })

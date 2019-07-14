@@ -1,2 +1,7 @@
 .home {
+  &__lists {
+    display: flex;
+    background-color: aqua;
+    justify-content: space-between;
+  }
 }

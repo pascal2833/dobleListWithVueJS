@@ -11,7 +11,17 @@ export default {
     ...actions
   },
   getters: {
-    // Get columnsName -> comment le faire pour chacune des 2 ?
-    // totalsValue: state => state.tableFormattedData.totals || '',
+    getListItemsNameGetter: state => listName => {
+      const objToReturn = state.listNamesAndDataAssociated.filter((listObj) => listObj.listName === listName)[0]
+      if (objToReturn) {
+        return objToReturn['listItemsName']
+      }
+    },
+    getListDataGetter: state => listName => {
+      const objToReturn = state.listNamesAndDataAssociated.filter((listObj) => listObj.listName === listName)[0]
+      if (objToReturn) {
+        return objToReturn['listData']
+      }
+    }
   }
 }

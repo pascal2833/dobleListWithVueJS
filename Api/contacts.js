@@ -1,7 +1,30 @@
-// TODO: explain changes done and the fact that in reality, would be retrieve thanks to a get request with the name of the items to retrieve (= listName).
-// So this file represents the fake response from an API.
+/* This file represents the fake response from an API.
+  This structure would be an easy one to adapt data list to a generic component list (would need a discussion with back end guy).
+  In a real case, only one data object, changing f(request).
+ */
+
 export const contactsInJsObject = JSON.parse(`{
-"leftList": [
+  "data_rightList": {
+    "listData": [],
+    "listName": "rightList",
+    "listItemsName": [
+      {"columnName": "id", "dataKey": "id"},
+      {"columnName": "Gender", "dataKey": "gender"},
+      {"columnName": "First Name", "dataKey": "first_name"},
+      {"columnName": "Last name", "dataKey": "last_name"},
+      {"columnName": "Email", "dataKey": "email"}
+    ]
+  },
+  "data_leftList": {
+    "listName": "leftList",
+    "listItemsName": [
+      {"columnName": "id", "dataKey": "id"},
+      {"columnName": "Gender", "dataKey": "gender"},
+      {"columnName": "First Name", "dataKey": "first_name"},
+      {"columnName": "Last name", "dataKey": "last_name"},
+      {"columnName": "Email", "dataKey": "email"}
+    ],
+    "listData": [
       {
         "id": 1,
         "gender": "Male",
@@ -541,7 +564,7 @@ export const contactsInJsObject = JSON.parse(`{
         "last_name": "Ethelston",
         "email": "bethelston24@purevolume.com"
       }
-    ],
-  "rightList": []
+    ]
+  }
 }
 `)
