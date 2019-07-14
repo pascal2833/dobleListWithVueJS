@@ -1,4 +1,33 @@
 @import "assets/vars-and-mixins";
 
 .app {
+  color: $mainTextsColor;
+  font-family: 'Mukta Mahee', sans-serif;
+  .icons {
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: $mainTextsColor;
+    z-index: 99;
+    position: relative;
+  }
+  .fieldset-perso {
+    border: none;
+    padding-left: 0;
+  }
+  .fieldset-legend-perso, .labels-4-inputs {
+    font-weight: bold;
+    display: block;
+    margin-top: $mainVerticalSpace;
+  }
+  .main-inputs {
+    font-family: 'Mukta Mahee', sans-serif;
+    font-size: 1.2rem;
+    padding: .2em $mainVerticalSpace;
+    width: 90%;
+  }
+  .main-submit-button {
+    @include homeMadeButton(11em, 2.5em, white , $mainTextsColor, $colorBackgroundButton, $colorHoverText, .2em, .2em, 1em);
+    margin-top: 1em;
+    font-family: 'Mukta Mahee', sans-serif;
+  }
 }

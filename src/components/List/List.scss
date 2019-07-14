@@ -10,9 +10,6 @@ $heightRows: 60px;
       &__methods  {
         background-color: green;
         height: $heightRows;
-        &__icons {
-          cursor: pointer;
-        }
       }
     }
     &__header {

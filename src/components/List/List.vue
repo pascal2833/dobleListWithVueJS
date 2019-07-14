@@ -12,7 +12,7 @@
           {{listItem.columnName}}
         </th>
         <div class="rows__methods">
-          <i class="far fa-plus-square rows__methods__icons"></i>
+          <i class="far fa-plus-square rows__methods icons"></i>
         </div>
       </tr>
       </thead>
@@ -21,18 +21,19 @@
         <td v-for="listItem in getListItemsName" :key=listItem.dataKey>{{row[listItem.dataKey]}}</td>
         <div class="rows__methods">
           <i
-            class="far fa-trash-alt rows__methods__icons"
+            class="far fa-trash-alt rows__methods icons"
             @click="deleteRow({rowId: row.id, listName})"
             title="Delete this row"
           >
           </i>
           <i
-            class="fas fa-edit rows__methods__icons"
+            class="fas fa-edit rows__methods icons"
+            @click="editRow({gender: row.gender, firstName: row.first_name, lastName: row.last_name, email: row.email})"
             title="Edit this row"
           >
           </i>
           <i
-            class="fas fa-arrows-alt-h rows__methods__icons"
+            class="fas fa-arrows-alt-h rows__methods icons"
             @click="passRowToOtherList({rowId: row.id, originListName: listName})"
             title="Pass this row to the other list"
           >
@@ -46,12 +47,25 @@
       :can-cancel="true"
       :is-full-page="loading.fullPage">
     </loading>
+    <form-modal
+      :data="formModalDataToEdit"
+      :isVisible="formModalDataToEdit.formModalIsVisible"
+      @clickOnCloseModalEvent="closeFormModal()"
+    >
+    </form-modal>
+    <form-modal
+      :data="formModalDataToAdd"
+      :isVisible="formModalDataToAdd.formModalIsVisible"
+      @clickOnCloseModalEvent="closeFormModal()"
+    >
+    </form-modal>
   </div>
 </template>
 
 <script>
 import { mapActions } from 'vuex'
 import Loading from 'vue-loading-overlay'
+import FormModal from '../FormModal/FormModal'
 import 'vue-loading-overlay/dist/vue-loading.css'
 import { listNameDictionary } from '../../dictionnaries/listNameDictionnary'
 export default {
@@ -68,11 +82,28 @@ export default {
         isLoading: false,
         fullPage: true
       },
-      listNameDictionary: listNameDictionary
+      listNameDictionary: listNameDictionary,
+      formModalDataToEdit: {
+        formModalIsVisible: false,
+        formModalTitle: 'Edit row items:',
+        gender: '',
+        gendersTitle: 'Gender:',
+        firstName: '',
+        firstNameTitle: 'First Name:',
+        lastName: '',
+        lastNameTitle: 'Last Name:',
+        email: '',
+        emailTitle: 'Email:'
+      },
+      formModalDataToAdd: {
+        formModalIsVisible: false,
+        formModalTitle: 'ss'
+      }
     }
   },
   components: {
-    Loading
+    Loading,
+    FormModal
   },
   methods: {
     ...mapActions([
@@ -98,6 +129,17 @@ export default {
         .then(() => {
           this.loading.isLoading = false
         })
+    },
+    closeFormModal () {
+      this.formModalDataToEdit.formModalIsVisible = false
+      this.formModalDataToAdd.formModalIsVisible = false
+    },
+    editRow (rowData) {
+      this.formModalDataToEdit.formModalIsVisible = true
+      this.formModalDataToEdit.gender = rowData.gender
+      this.formModalDataToEdit.firstName = rowData.firstName
+      this.formModalDataToEdit.lastName = rowData.lastName
+      this.formModalDataToEdit.email = rowData.email
     }
   },
   computed: {

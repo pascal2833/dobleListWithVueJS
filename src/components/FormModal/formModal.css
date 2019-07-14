@@ -1,0 +1,31 @@
+.form-modal-mask {
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); }
+  .form-modal-mask__container {
+    background-color: white;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%);
+    z-index: 99;
+    width: 40vw;
+    height: auto;
+    padding: .3em .7em;
+    border-radius: .2em;
+    background-color: rgba(254, 254, 254, 0.85);
+    border: solid 1px #1e1e23;
+    font-size: 1.2rem;
+    text-align: justify; }
+    .form-modal-mask__container__title {
+      text-align: center; }
+    .form-modal-mask__container__form {
+      margin-bottom: 0.5em; }
+    .form-modal-mask__container .close-icon {
+      float: right; }
+
+/*# sourceMappingURL=formModal.css.map */

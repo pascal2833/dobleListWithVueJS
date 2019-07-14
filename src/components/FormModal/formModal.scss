@@ -1,0 +1,21 @@
+@import '../../assets/vars-and-mixins';
+.form-modal-mask {
+  @include backgroundModal();
+  &__container {
+    background-color: white;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%);
+    &__title {
+      text-align: center;
+    }
+    &__form {
+      margin-bottom: $mainVerticalSpace;
+    }
+    @include popUpOrBoxInModal(40vw);
+    .close-icon {
+      float: right;
+    }
+  }
+}

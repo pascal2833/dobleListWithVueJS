@@ -7,8 +7,6 @@
     .list__data .rows__methods {
       background-color: green;
       height: 60px; }
-      .list__data .rows__methods__icons {
-        cursor: pointer; }
   .list__data__header .header-titles {
     cursor: pointer; }
 
