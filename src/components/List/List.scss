@@ -1,5 +1,25 @@
+$heightRows: 60px;
 .list {
   &__data {
+    border-collapse: collapse;
+    .rows {
+      height: $heightRows;
+      &:nth-child(even) {
+        background-color: #dddddd;
+      }
+      &__methods  {
+        background-color: green;
+        height: $heightRows;
+        &__icons {
+          cursor: pointer;
+        }
+      }
+    }
+    &__header {
+      .header-titles {
+        cursor: pointer;
+      }
+    }
 
   }
 }
