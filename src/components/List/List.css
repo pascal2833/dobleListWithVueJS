@@ -5,8 +5,12 @@
     .list__data .rows:nth-child(even) {
       background-color: #dddddd; }
     .list__data .rows__methods {
-      background-color: green;
-      height: 60px; }
+      height: 60px;
+      width: 70px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-wrap: wrap; }
   .list__data__header .header-titles {
     cursor: pointer; }
 

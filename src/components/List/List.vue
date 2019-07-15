@@ -1,5 +1,6 @@
 <template>
   <div class="list">
+    <search-in-list :listNameToFilter="listName" @searchEvent="adaptListWhenSearch($event)"></search-in-list>
     <table class="list__data">
       <thead class="list__data__header">
       <tr class="rows">
@@ -15,7 +16,7 @@
           <i
             class="far fa-plus-square rows__methods icons"
             title="Add a row"
-            @click="addRow(listName)"
+            @click="addRow()"
           >
           </i>
         </div>
@@ -26,19 +27,19 @@
         <td v-for="listItem in getListItemsName" :key=listItem.dataKey>{{row[listItem.dataKey]}}</td>
         <div class="rows__methods">
           <i
-            class="far fa-trash-alt rows__methods icons"
+            class="far fa-trash-alt icons"
             @click="deleteRow({rowId: row.id, listName})"
             title="Delete this row"
           >
           </i>
           <i
-            class="fas fa-edit rows__methods icons"
+            class="fas fa-edit icons"
             @click="editRow({gender: row.gender, firstName: row.first_name, lastName: row.last_name, email: row.email, rowId: row.id})"
             title="Edit this row"
           >
           </i>
           <i
-            class="fas fa-arrows-alt-h rows__methods icons"
+            class="fas fa-arrows-alt-h icons"
             @click="passRowToOtherList({rowId: row.id, originListName: listName})"
             title="Pass this row to the other list"
           >
@@ -72,6 +73,7 @@
 </template>
 
 <script>
+import SearchInList from '../SearchInList/SearchInList'
 import { mapActions } from 'vuex'
 import Loading from 'vue-loading-overlay'
 import FormModal from '../FormModal/FormModal'
@@ -122,12 +124,14 @@ export default {
       formNames: {
         toAdd: 'toAdd',
         toEdit: 'toEdit'
-      }
+      },
+      characterFromSearch: ''
     }
   },
   components: {
     Loading,
-    FormModal
+    FormModal,
+    SearchInList
   },
   methods: {
     ...mapActions([
@@ -148,7 +152,7 @@ export default {
           this.loading.isLoading = false
         })
     },
-    addRow (listName) {
+    addRow () {
       this.formModalDataToAdd.formModalIsVisible = true
     },
     editRow (rowData) {
@@ -187,14 +191,17 @@ export default {
     closeFormModal () {
       this.formModalDataToEdit.formModalIsVisible = false
       this.formModalDataToAdd.formModalIsVisible = false
+    },
+    adaptListWhenSearch (dataFromSearch) {
+      this.characterFromSearch = dataFromSearch.character
     }
   },
   computed: {
     getListItemsName () {
       return this.$store.getters.getListItemsNameGetter(this.listName)
     },
-    getListData () {
-      return this.$store.getters.getListDataGetter(this.listName)
+    getListData () { // Take in account filter/search and order by items.
+      return this.$store.getters.getListDataGetter({listName: this.listName, characterFromSearch: this.characterFromSearch})
     }
   },
   created () {

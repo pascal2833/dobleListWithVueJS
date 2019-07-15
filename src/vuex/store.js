@@ -12,19 +12,18 @@ export default {
   },
   getters: {
     getListItemsNameGetter: state => listName => {
-      const objToReturn = state.listNamesAndDataAssociated.filter((listObj) => listObj.listName === listName)[0]
+      const indexList = state.listNamesAndDataAssociated.map((listObj) => listObj.listName).indexOf(listName)
+      const objToReturn = state.listNamesAndDataAssociated[indexList]
       if (objToReturn) {
         return objToReturn['listItemsName']
       }
     },
-    getListDataGetter: state => listName => {
-      const objToReturn = state.listNamesAndDataAssociated.filter((listObj) => listObj.listName === listName)[0]
+    getListDataGetter: state => data => {
+      const indexList = state.listNamesAndDataAssociated.map((listObj) => listObj.listName).indexOf(data.listName)
+      const objToReturn = state.listNamesAndDataAssociated[indexList]
       if (objToReturn) {
-        return objToReturn['listData']
+        return objToReturn.listData.filter((dataObj) => dataObj.first_name.toLowerCase().indexOf(data.characterFromSearch.toLowerCase()) >= 0)
       }
-    },
-    getListDataFilteredGetter: state => data => {
-      return data
     }
   }
 }

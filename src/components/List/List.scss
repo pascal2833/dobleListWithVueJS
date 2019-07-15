@@ -8,8 +8,12 @@ $heightRows: 60px;
         background-color: #dddddd;
       }
       &__methods  {
-        background-color: green;
         height: $heightRows;
+        width: 70px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
       }
     }
     &__header {

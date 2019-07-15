@@ -1,11 +1,9 @@
 <template>
     <div class="home">
       <section class="home__lists">
-        <search-in-list :listNameToFilter="list1"></search-in-list>
         <list :listName=list1></list>
       </section>
       <section class="home__lists">
-        <search-in-list :listNameToFilter="list2"></search-in-list>
         <list :listName=list2></list>
       </section>
     </div>
@@ -13,13 +11,13 @@
 
 <script>
 
-import SearchInList from '../SearchInList/SearchInList'
+// import SearchInList from '../SearchInList/SearchInList'
 import { listNameDictionary } from '../../dictionnaries/listNameDictionnary'
 import List from '../List/List'
 export default {
   name: 'Home',
   components: {
-    SearchInList,
+    // SearchInList,
     List
   },
   data () {
