@@ -1,8 +1,11 @@
 <template>
     <div class="home">
-      <search-in-list></search-in-list>
       <section class="home__lists">
+        <search-in-list :listNameToFilter="list1"></search-in-list>
         <list :listName=list1></list>
+      </section>
+      <section class="home__lists">
+        <search-in-list :listNameToFilter="list2"></search-in-list>
         <list :listName=list2></list>
       </section>
     </div>

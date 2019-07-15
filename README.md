@@ -4,7 +4,11 @@
 
 TODO:
 - use vuelidate to control form.
+  - no empty fields (all mandatories)
+  - Check email format with vuelidate (done with default html5)
+  - Block submit if not OK.
 - Use vue alert to show confirmation messages, for ex before delete a row.
+- Keep data in local storage to keep data when refresh the page.
 
 ## Build Setup
 

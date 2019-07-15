@@ -22,6 +22,9 @@ export default {
       if (objToReturn) {
         return objToReturn['listData']
       }
+    },
+    getListDataFilteredGetter: state => data => {
+      return data
     }
   }
 }

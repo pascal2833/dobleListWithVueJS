@@ -1,5 +1,8 @@
-.home__lists {
+.home {
+  margin: .5rem 1rem;
   display: flex;
   justify-content: space-between; }
+  .home__lists {
+    display: inline; }
 
 /*# sourceMappingURL=home.css.map */

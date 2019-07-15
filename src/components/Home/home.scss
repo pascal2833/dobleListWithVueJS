@@ -1,6 +1,8 @@
 .home {
+  margin: .5rem 1rem;
+  display: flex;
+  justify-content: space-between;
   &__lists {
-    display: flex;
-    justify-content: space-between;
+    display: inline;
   }
 }

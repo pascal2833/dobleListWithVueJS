@@ -12,7 +12,12 @@
           {{listItem.columnName}}
         </th>
         <div class="rows__methods">
-          <i class="far fa-plus-square rows__methods icons"></i>
+          <i
+            class="far fa-plus-square rows__methods icons"
+            title="Add a row"
+            @click="addRow(listName)"
+          >
+          </i>
         </div>
       </tr>
       </thead>
@@ -60,6 +65,7 @@
       :formType="formNames.toAdd"
       :isVisible="formModalDataToAdd.formModalIsVisible"
       @clickOnCloseModalEvent="closeFormModal()"
+      :doWhenSubmit="submitWhenEditOrAdd"
     >
     </form-modal>
   </div>
@@ -102,7 +108,16 @@ export default {
       },
       formModalDataToAdd: {
         formModalIsVisible: false,
-        formModalTitle: 'ss'
+        formModalTitle: 'Add a row',
+        gender: '',
+        gendersTitle: 'Gender:',
+        firstName: '',
+        firstNameTitle: 'First Name:',
+        lastName: '',
+        lastNameTitle: 'Last Name:',
+        email: '',
+        emailTitle: 'Email:',
+        titleSubmitButton: 'Add row'
       },
       formNames: {
         toAdd: 'toAdd',
@@ -120,7 +135,8 @@ export default {
       'sortListAction',
       'deleteRowAction',
       'passRowToOtherListAction',
-      'editRowAction'
+      'editRowAction',
+      'addRowAction'
     ]),
     sortList (dataObj) {
       this.sortListAction(dataObj)
@@ -132,21 +148,12 @@ export default {
           this.loading.isLoading = false
         })
     },
-    passRowToOtherList (dataObj) {
-      this.loading.isLoading = true
-      dataObj.originListName === listNameDictionary.LIST1 ? dataObj.destinationListName = listNameDictionary.LIST2 : dataObj.destinationListName = listNameDictionary.LIST1
-      this.passRowToOtherListAction(dataObj)
-        .then(() => {
-          this.loading.isLoading = false
-        })
-    },
-    closeFormModal () {
-      this.formModalDataToEdit.formModalIsVisible = false
-      this.formModalDataToAdd.formModalIsVisible = false
+    addRow (listName) {
+      this.formModalDataToAdd.formModalIsVisible = true
     },
     editRow (rowData) {
-      this.formModalDataToEdit.rowId = rowData.rowId
       this.formModalDataToEdit.formModalIsVisible = true
+      this.formModalDataToEdit.rowId = rowData.rowId
       this.formModalDataToEdit.gender = rowData.gender
       this.formModalDataToEdit.firstName = rowData.firstName
       this.formModalDataToEdit.lastName = rowData.lastName
@@ -161,8 +168,25 @@ export default {
             this.loading.isLoading = false
           })
       } else if (formName === 'toAdd') {
-        // addRow_action
+        this.loading.isLoading = true
+        this.addRowAction({listName: this.listName, email: formData.email, gender: formData.gender, firstName: formData.firstName, lastName: formData.lastName})
+          .then(() => {
+            this.formModalDataToAdd.formModalIsVisible = false
+            this.loading.isLoading = false
+          })
       }
+    },
+    passRowToOtherList (dataObj) {
+      this.loading.isLoading = true
+      dataObj.originListName === listNameDictionary.LIST1 ? dataObj.destinationListName = listNameDictionary.LIST2 : dataObj.destinationListName = listNameDictionary.LIST1
+      this.passRowToOtherListAction(dataObj)
+        .then(() => {
+          this.loading.isLoading = false
+        })
+    },
+    closeFormModal () {
+      this.formModalDataToEdit.formModalIsVisible = false
+      this.formModalDataToAdd.formModalIsVisible = false
     }
   },
   computed: {
