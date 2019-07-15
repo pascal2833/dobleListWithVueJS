@@ -2,6 +2,10 @@
 
 > A Vue.js project
 
+TODO:
+- use vuelidate to control form.
+- Use vue alert to show confirmation messages, for ex before delete a row.
+
 ## Build Setup
 
 ``` bash

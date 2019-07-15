@@ -8,18 +8,18 @@
       >
       </i>
       <h2 class="form-modal-mask__container__title">{{data.formModalTitle}}</h2>
-      <form class="form-modal-mask__container__form">
+      <form class="form-modal-mask__container__form" @submit.prevent="doWhenSubmit(formType, data)">
         <fieldset class="fieldset-perso">
           <legend class="fieldset-legend-perso">{{data.gendersTitle}}</legend>
-          <label><input type="radio" name="gender" value="Male" :checked="data.gender === 'Male'"> Male</label>
-          <label><input type="radio" name="gender" value="Female" :checked="data.gender === 'Female'"> Female</label>
+          <label><input type="radio" name="gender" value="Male" :checked="data.gender === 'Male'" @click="data.gender=$event.target.value"> Male</label>
+          <label><input type="radio" name="gender" value="Female" :checked="data.gender === 'Female'" @click="data.gender=$event.target.value"> Female</label>
         </fieldset>
         <label class="labels-4-inputs">{{data.firstNameTitle}}</label>
-        <input class="main-inputs" type="text" :value="data.firstName">
+        <input class="main-inputs" type="text" :value="data.firstName" @keyup="data.firstName=$event.target.value">
         <label class="labels-4-inputs">{{data.lastNameTitle}}</label>
-        <input class="main-inputs" type="text" :value="data.lastName">
+        <input class="main-inputs" type="text" :value="data.lastName" @keyup="data.lastName=$event.target.value">
         <label class="labels-4-inputs">{{data.emailTitle}}</label>
-        <input class="main-inputs" type="email" :value="data.email">
+        <input class="main-inputs" type="email" :value="data.email" @keyup="data.email=$event.target.value">
         <!-- <div class="gnalFormErrorMessage" v-if="!$v.photoToShowInPhotosContainer.title.maxLength">
           Le titre ne peut pas avoir plus de 50 characteres.
         </div>
@@ -33,7 +33,7 @@
           class="main-submit-button"
           type="submit"
         >
-          Edit items
+          {{data.titleSubmitButton}}
         </button>
       </form>
     </div>
@@ -48,9 +48,16 @@ export default {
       type: Boolean,
       required: true
     },
+    formType: {
+      type: String,
+      required: true
+    },
     data: {
       type: Object,
       required: true
+    },
+    doWhenSubmit: {
+      type: Function
     }
   },
   methods: {

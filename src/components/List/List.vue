@@ -28,7 +28,7 @@
           </i>
           <i
             class="fas fa-edit rows__methods icons"
-            @click="editRow({gender: row.gender, firstName: row.first_name, lastName: row.last_name, email: row.email})"
+            @click="editRow({gender: row.gender, firstName: row.first_name, lastName: row.last_name, email: row.email, rowId: row.id})"
             title="Edit this row"
           >
           </i>
@@ -49,12 +49,15 @@
     </loading>
     <form-modal
       :data="formModalDataToEdit"
+      :formType="formNames.toEdit"
       :isVisible="formModalDataToEdit.formModalIsVisible"
       @clickOnCloseModalEvent="closeFormModal()"
+      :doWhenSubmit="submitWhenEditOrAdd"
     >
     </form-modal>
     <form-modal
       :data="formModalDataToAdd"
+      :formType="formNames.toAdd"
       :isVisible="formModalDataToAdd.formModalIsVisible"
       @clickOnCloseModalEvent="closeFormModal()"
     >
@@ -84,6 +87,7 @@ export default {
       },
       listNameDictionary: listNameDictionary,
       formModalDataToEdit: {
+        rowId: '',
         formModalIsVisible: false,
         formModalTitle: 'Edit row items:',
         gender: '',
@@ -93,11 +97,16 @@ export default {
         lastName: '',
         lastNameTitle: 'Last Name:',
         email: '',
-        emailTitle: 'Email:'
+        emailTitle: 'Email:',
+        titleSubmitButton: 'Edit items'
       },
       formModalDataToAdd: {
         formModalIsVisible: false,
         formModalTitle: 'ss'
+      },
+      formNames: {
+        toAdd: 'toAdd',
+        toEdit: 'toEdit'
       }
     }
   },
@@ -110,7 +119,8 @@ export default {
       'getListDataFromApiAction',
       'sortListAction',
       'deleteRowAction',
-      'passRowToOtherListAction'
+      'passRowToOtherListAction',
+      'editRowAction'
     ]),
     sortList (dataObj) {
       this.sortListAction(dataObj)
@@ -135,11 +145,24 @@ export default {
       this.formModalDataToAdd.formModalIsVisible = false
     },
     editRow (rowData) {
+      this.formModalDataToEdit.rowId = rowData.rowId
       this.formModalDataToEdit.formModalIsVisible = true
       this.formModalDataToEdit.gender = rowData.gender
       this.formModalDataToEdit.firstName = rowData.firstName
       this.formModalDataToEdit.lastName = rowData.lastName
       this.formModalDataToEdit.email = rowData.email
+    },
+    submitWhenEditOrAdd (formName, formData) {
+      if (formName === 'toEdit') {
+        this.loading.isLoading = true
+        this.editRowAction({rowId: this.formModalDataToEdit.rowId, listName: this.listName, email: formData.email, gender: formData.gender, firstName: formData.firstName, lastName: formData.lastName})
+          .then(() => {
+            this.formModalDataToEdit.formModalIsVisible = false
+            this.loading.isLoading = false
+          })
+      } else if (formName === 'toAdd') {
+        // addRow_action
+      }
     }
   },
   computed: {
