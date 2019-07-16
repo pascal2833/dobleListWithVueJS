@@ -22,7 +22,7 @@ const wrapper = shallowMount(FormModal, {
   propsData: propsToPass
 })
 
-describe('FormModal.vue: check if texts and values passed by props match', () => {
+describe('FormModal.vue:', () => {
   test('When it\'s visible, FormModal Component show titles which are related with its props', () => {
     expect(wrapper.find('#formModal_title').text()).toBe(propsToPass.data.formModalTitle)
     expect(wrapper.find('#formModal_gendersTitle').text()).toBe(propsToPass.data.gendersTitle)
@@ -35,8 +35,6 @@ describe('FormModal.vue: check if texts and values passed by props match', () =>
     expect(wrapper.find('#formModal_maleInputRadio').attributes().value === 'Male').toBe(true)
     expect(wrapper.find('#formModal_femaleInputRadio').attributes().value === 'Female').toBe(true)
   })
-})
-describe('FormModal.vue:', () => {
   test('When it\'s visible, gender radio-buttons are well setted when radio button changed', () => {
     expect(wrapper.vm.data.gender).toBe(propsToPass.data.gender)
     const radioButtonMale = wrapper.find('#formModal_maleInputRadio')
@@ -46,8 +44,6 @@ describe('FormModal.vue:', () => {
     radioButtonFemale.trigger('click')
     expect(wrapper.vm.data.gender).toBe('Female')
   })
-})
-describe('FormModal.vue:', () => {
   test('When props isVisible === false, doesn\'t render anything', () => {
     wrapper.setProps({ isVisible: false })
     expect(wrapper.text()).toBe('') // text() on a component wrapper returns all the text rendered by the component
