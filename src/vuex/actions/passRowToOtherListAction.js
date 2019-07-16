@@ -8,7 +8,6 @@ export const passRowToOtherListAction = ({ state, commit }, dataToPass) => {
       const rowToTranslate = state.listNamesAndDataAssociated[indexOriginalList].listData[indexRowOriginalListToDelete]
       // Add row object to destination list:
       commit('passRowToOtherListMutation', {rowToTranslate, indexDestinationList})
-      // TODO: Refresh destination list and turn to order f(previous one): -> keep in memory the orders params
       // Delete row in original list:
       commit('deleteRowMutation', {indexList: indexOriginalList, indexRowToDelete: indexRowOriginalListToDelete})
       resolve('success')

@@ -1,9 +1,17 @@
+@import '../../assets/vars-and-mixins';
 $heightRows: 60px;
 .list {
   &__data {
     border-collapse: collapse;
+    &__header {
+      .header-titles {
+        cursor: pointer;
+        width: 7vw;
+      }
+    }
     .rows {
       height: $heightRows;
+      text-align: left;
       &:nth-child(even) {
         background-color: #dddddd;
       }
@@ -16,11 +24,8 @@ $heightRows: 60px;
         flex-wrap: wrap;
       }
     }
-    &__header {
-      .header-titles {
-        cursor: pointer;
-      }
+    .data-in-row {
+      padding-left: .5em;
     }
-
   }
 }

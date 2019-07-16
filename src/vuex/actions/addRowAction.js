@@ -13,7 +13,6 @@ export const addRowAction = ({state, commit}, dataToPassFromAction) => {
       }
       dataToPassFromAction.idToPass = maxId + 1
       commit('addRowMutation', {indexList, dataToPassFromAction}) // In real life, would be a POST request to add data to db.
-      // TODO: Refresh destination list and turn to order f(previous one): -> keep in memory the orders params
       resolve('success')
     }, 2000)
   })

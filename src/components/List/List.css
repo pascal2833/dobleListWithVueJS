@@ -1,7 +1,11 @@
 .list__data {
   border-collapse: collapse; }
+  .list__data__header .header-titles {
+    cursor: pointer;
+    width: 7vw; }
   .list__data .rows {
-    height: 60px; }
+    height: 60px;
+    text-align: left; }
     .list__data .rows:nth-child(even) {
       background-color: #dddddd; }
     .list__data .rows__methods {
@@ -11,7 +15,7 @@
       justify-content: space-around;
       align-items: center;
       flex-wrap: wrap; }
-  .list__data__header .header-titles {
-    cursor: pointer; }
+  .list__data .data-in-row {
+    padding-left: .5em; }
 
 /*# sourceMappingURL=List.css.map */

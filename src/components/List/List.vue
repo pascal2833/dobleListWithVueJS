@@ -3,28 +3,28 @@
     <search-in-list :listNameToFilter="listName" @searchEvent="adaptListWhenSearch($event)"></search-in-list>
     <table class="list__data">
       <thead class="list__data__header">
-      <tr class="rows">
-        <th
-          class="header-titles"
-          v-for="listItem in getListItemsName"
-          :key=listItem.dataKey
-          @click="sortList({listName, itemToOrder: listItem.dataKey, increaseOrDecrease: 'increase'})"
-        >
-          {{listItem.columnName}}
-        </th>
-        <div class="rows__methods">
-          <i
-            class="far fa-plus-square rows__methods icons"
-            title="Add a row"
-            @click="addRow()"
+        <tr class="rows">
+          <th
+            class="header-titles data-in-row"
+            v-for="listItem in getListItemsName"
+            :key=listItem.dataKey
+            @click="sortList({listName, itemToOrder: listItem.dataKey, increaseOrDecrease: 'increase'})"
           >
-          </i>
-        </div>
-      </tr>
+            {{listItem.columnName}}
+          </th>
+          <div class="rows__methods">
+            <i
+              class="far fa-plus-square rows__methods icons"
+              title="Add a row"
+              @click="addRow()"
+            >
+            </i>
+          </div>
+        </tr>
       </thead>
       <tbody>
-      <tr v-for="row in getListData" :key="row.id" class="rows">
-        <td v-for="listItem in getListItemsName" :key=listItem.dataKey>{{row[listItem.dataKey]}}</td>
+      <tr v-for="row in getListData" :key=row.id class="rows">
+        <td v-for="listItem in getListItemsName" :key=listItem.dataKey class="data-in-row">{{row[listItem.dataKey]}}</td>
         <div class="rows__methods">
           <i
             class="far fa-trash-alt icons"
