@@ -1,5 +1,6 @@
 <template>
   <div class="form-modal-mask" v-if="isVisible">
+    <a>{{ data.formModalTitle }}</a>
     <div class="form-modal-mask__container">
       <i
         class="fas fa-times icons icons close-icon"
