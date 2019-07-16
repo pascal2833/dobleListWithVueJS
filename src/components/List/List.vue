@@ -153,6 +153,11 @@ export default {
         })
     },
     addRow () {
+      // Turn to put input values to initial values:
+      this.formModalDataToAdd.gender = ''
+      this.formModalDataToAdd.firstName = ''
+      this.formModalDataToAdd.lastName = ''
+      this.formModalDataToAdd.email = ''
       this.formModalDataToAdd.formModalIsVisible = true
     },
     editRow (rowData) {
