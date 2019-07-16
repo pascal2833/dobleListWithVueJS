@@ -9,11 +9,12 @@ TODO:
   - Block submit if not OK.
 - Add a way to no show all rows (pagination, more at the bottom of the page?)
 - Use vue alert to show confirmation messages, for ex before delete a row.
-- Adapt with th table to items size.
+- Adapt with the table to items size.
 - Keep data in local storage to keep data when refresh the page.
 - Keep in memory the orders params: when we add row, it will be better to turn to order list (by default, added to the end).
 - Add icon to order by items and to choose asc or desc order.
 - Responsive version?
+- Write a good readMe
 
 ## Build Setup
 

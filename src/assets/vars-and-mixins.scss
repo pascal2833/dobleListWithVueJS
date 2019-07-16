@@ -9,7 +9,7 @@ $colorBackgroundButton: #c28f78;
 // --------------- Mixins: ----------------- //
 @mixin backgroundModal($backgrounColor: rgba(0, 0, 0, .5)) {
   position: fixed;
-  z-index: 99;
+  z-index: 100;
   top: 0;
   left: 0;
   width: 100vw;

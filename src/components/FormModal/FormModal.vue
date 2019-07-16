@@ -1,6 +1,5 @@
 <template>
   <div class="form-modal-mask" v-if="isVisible">
-    <a>{{ data.formModalTitle }}</a>
     <div class="form-modal-mask__container">
       <i
         class="fas fa-times icons icons close-icon"
@@ -8,19 +7,21 @@
         @click="closeFormModal()"
       >
       </i>
-      <h2 class="form-modal-mask__container__title">{{data.formModalTitle}}</h2>
+      <h2 class="form-modal-mask__container__title" id="formModal_title">{{data.formModalTitle}}</h2>
       <form class="form-modal-mask__container__form" @submit.prevent="doWhenSubmit(formType, data)">
         <fieldset class="fieldset-perso">
-          <legend class="fieldset-legend-perso">{{data.gendersTitle}}</legend>
-          <label><input type="radio" name="gender" value="Male" :checked="data.gender === 'Male'" @click="data.gender=$event.target.value"> Male</label>
-          <label><input type="radio" name="gender" value="Female" :checked="data.gender === 'Female'" @click="data.gender=$event.target.value"> Female</label>
+          <legend class="fieldset-legend-perso" id="formModal_gendersTitle">{{data.gendersTitle}}</legend>
+          <label>
+            <input type="radio" name="gender" value="Male" :checked="data.gender === 'Male'" @click="data.gender=$event.target.value" id="formModal_maleInputRadio"> Male</label>
+          <label>
+            <input type="radio" name="gender" value="Female" :checked="data.gender === 'Female'" @click="data.gender=$event.target.value" id="formModal_femaleInputRadio"> Female</label>
         </fieldset>
-        <label class="labels-4-inputs">{{data.firstNameTitle}}</label>
-        <input class="main-inputs" type="text" :value="data.firstName" @keyup="data.firstName=$event.target.value">
-        <label class="labels-4-inputs">{{data.lastNameTitle}}</label>
-        <input class="main-inputs" type="text" :value="data.lastName" @keyup="data.lastName=$event.target.value">
-        <label class="labels-4-inputs">{{data.emailTitle}}</label>
-        <input class="main-inputs" type="email" :value="data.email" @keyup="data.email=$event.target.value">
+        <label class="labels-4-inputs" id="formModal_firstNameTitle">{{data.firstNameTitle}}</label>
+        <input class="main-inputs" type="text" :value="data.firstName" @keyup="data.firstName=$event.target.value" id="formModal_firstNameInputValue">
+        <label class="labels-4-inputs" id="formModal_lastNameTitle">{{data.lastNameTitle}}</label>
+        <input class="main-inputs" type="text" :value="data.lastName" @keyup="data.lastName=$event.target.value" id="formModal_lastNameInputValue">
+        <label class="labels-4-inputs" id="formModal_emailTitle">{{data.emailTitle}}</label>
+        <input class="main-inputs" type="email" :value="data.email" @keyup="data.email=$event.target.value" id="formModal_emailInputValue">
         <!-- <div class="gnalFormErrorMessage" v-if="!$v.photoToShowInPhotosContainer.title.maxLength">
           Le titre ne peut pas avoir plus de 50 characteres.
         </div>
@@ -33,6 +34,7 @@
         <button
           class="main-submit-button"
           type="submit"
+          id="formModal_submitButtonTitle"
         >
           {{data.titleSubmitButton}}
         </button>
